@@ -1,3 +1,7 @@
+#import "@preview/wordometer:0.1.4": word-count, total-words, word-count-of, string-word-count
+#show: word-count
+
+
 // parse_page_dims() // {{{
 #let parse_page_dims(page_size_style) = {
   let (page_width, page_height) = if page_size_style == "metric" {
@@ -120,15 +124,136 @@
 //  // }}}
 
 // init_abstract() // {{{
-#let init_abstract(//title,
-                   //degree,
-                   //graduation_year,
-                   //name,
-                   ) = {
+#let init_abstract(title,
+                   author,
+                   degree,
+                   department,
+                   graduation_year) = {
+
+  show heading: set block(above: 0em, below: 1em)
+
+  let abstract = [#include("content/abstract.typ")]
+  let wc = word-count-of(abstract).words
+
+  let within_d_lim = (int(wc) <= 350)
+  let within_m_lim = (int(wc) <= 150)
+  let is_d = degree.first() == "D"
+  let is_m = degree.first() == "M"
+  let abstract = if (is_d and not within_d_lim) {
+    [Abstract exceeds doctoral word limit (350).]; panic()
+  } else if (is_m and not within_m_lim) {
+    [Abstract exceeds masters word limit (150).]; panic()
+  } else {
+    abstract
+  }
+
+  set align(center)
+  title
+
+  linebreak()
+  linebreak()
+
+  author
+  linebreak()
+  degree
+
+  linebreak()
+  linebreak()
+
+  "Department of " + department
+  linebreak()
+  "University of Toronto"
+  linebreak()
+  graduation_year
+
   set text(top-edge: 0.7em, bottom-edge: -0.3em)
-  set par(leading: 1em)
-  heading("Abstract")
-  include("content/abstract.typ")
+
+  v(2em)
+
+  heading("Abstract", outlined: false)
+
+  set align(left)
+  set par(justify: true, leading: 1.3em)
+
+  abstract
+}
+//  // }}}
+
+// init_acknowledgements() // {{{
+#let init_acknowledgements() = {
+  show heading: set block(above: 0em, below: 1em)
+  heading("Acknowledgements")
+  include("content/acknowledgements.typ")
+}
+//  // }}}
+
+// init_main() // {{{
+#let init_main() = {
+  include("content/main.typ")
+}
+//  // }}}
+
+// init_table_of_contents() // {{{
+#let init_table_of_contents() = {
+  show heading: set block(above: 0em, below: 0.5em)
+  heading("Table of Contents") 
+  outline(
+    title: []
+  )
+}
+//  // }}}
+
+// init_list_of_tables() // {{{
+#let init_list_of_tables() = {
+  show heading: set block(above: 0em, below: 0.5em)
+  heading("List of Tables")
+  outline(
+    title: [],
+    target: figure.where(kind: table)
+  )
+}
+//  // }}}
+
+// init_list_of_plates() // {{{
+#let init_list_of_plates() = {
+  show heading: set block(above: 0em, below: 0.5em)
+  heading("List of Plates")
+  outline(
+    title: [],
+    target: figure.where(kind: "plate")
+  )
+}
+//  // }}}
+
+// init_list_of_figures() // {{{
+#let init_list_of_figures() = {
+  show heading: set block(above: 0em, below: 0.5em)
+  heading("List of Figures")
+  outline(
+    title: [],
+    target: figure.where(kind: image)
+  )
+} 
+//  // }}}
+
+// init_list_of_appendices() // {{{
+#let init_list_of_appendices() = {
+  show heading: set block(above: 0em, below: 0.5em)
+  heading("List of Appendices")
+  outline(
+    title: [],
+    target: heading.where(supplement: "appendix")
+  )
+}
+//  // }}}
+
+// check_valid_degree() // {{{
+#let check_valid_degree(degree) = {
+  let not_doctoral = not degree.slice(0, 6) == "Doctor"
+  let not_masters = not degree.slice(0, 6) == "Master"
+  if (not_doctoral and not_masters)  {
+    [`degree` parameter must start with "Doctor" or "Master"]; panic()
+  }
 }
 //  // }}}
 
@@ -154,6 +279,11 @@
           department: [*missing_param_department*],
           degree: [*missing_param_degree*],
           graduation_year: [*missing_param_year*],
+          show_acknowledgements: true,
+          show_list_of_tables: true,
+          show_list_of_plates: false,
+          show_list_of_figures: true,
+          show_list_of_appendices: true,
           title_page_top_margin: 5cm,
           title_page_gap_1_height: 4cm,
           title_page_gap_2_height: 4cm,
@@ -164,7 +294,6 @@
           main_margin_style: "left_metric",
           font_size: 10pt,
           doc) = {
-  // Setting up global page styles
   let (page_width, page_height) = parse_page_dims(
     page_size_style
   )
@@ -179,7 +308,7 @@
   let font_size = parse_font(font_size)
   set text(size: font_size)
 
-  //---------------------------------------------------------------------------
+  check_valid_degree(degree)
 
   init_title_page(
     title,
@@ -196,11 +325,55 @@
     page_size_style,
   )
 
-  //---------------------------------------------------------------------------
+  pagebreak()
 
-  init_abstract()
+  set page(numbering: "i")
+
+  init_abstract(
+    title,
+    author,
+    degree,
+    department,
+    graduation_year
+  )
+
+  set par(leading: 0.75em)
 
   pagebreak()
+
+  if (show_acknowledgements) {
+    init_acknowledgements()
+    pagebreak()
+  }
+
+  init_table_of_contents()
+
+  pagebreak()
+
+  if (show_list_of_tables) {
+    init_list_of_tables()
+    pagebreak()
+  }
+
+  if (show_list_of_plates) {
+    init_list_of_plates()
+    pagebreak()
+  }
+
+  if (show_list_of_figures) {
+    init_list_of_figures()
+    pagebreak()
+  }
+
+  if (show_list_of_appendices) {
+    init_list_of_appendices()
+    pagebreak()
+  }
+
+  set page(numbering: "1")
+  counter(page).update(1)
+
+  init_main()
 
   doc
   //set page(margin: 10cm)

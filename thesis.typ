@@ -1,26 +1,30 @@
-#import "uoft.typ": uoft
-
-#import "@preview/wordometer:0.1.4": word-count, total-words
-
-#show: word-count
+#import "uoft.typ": uoft, word-count, total-words, word-count-of, string-word-count
 
 #show: uoft.with(
-  title: "Sample Title of Thesis",
+  title: "Title of Thesis",
   author: [Firstname Lastname],
   department: "Physiology",
   degree: "Doctor of Philosophy",
+  graduation_year: "2025",
   font_size: 12pt
 )
 
-sample text in document
+#let a = table.cell(
+  fill: green.lighten(60%),
+)[A]
+#let b = table.cell(
+  fill: aqua.lighten(60%),
+)[B]
 
-#show: word-count
 
-In this document, there are #total-words words all up.
+#figure(
+  table(
+    columns: 4,
+    [], [Exam 1], [Exam 2], [Exam 3],
 
-#word-count(total => [
-  The number of words in this block is #total.words
-  and there are #total.characters letters.
-])
-
-#lorem(10)
+    [John], [], a, [],
+    [Mary], [], a, a,
+    [Robert], b, a, b,
+  ),
+  caption: "Table",
+)
