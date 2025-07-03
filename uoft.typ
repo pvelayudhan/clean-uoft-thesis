@@ -43,6 +43,7 @@
 #let init_title_page(title,
                 author,
                 department,
+                degree,
                 graduation_year,
                 title_page_top_margin,
                 title_page_gap_1_height,
@@ -109,7 +110,7 @@
     #v(gap_2_height)
     #author
     #v(gap_3_height)
-    A thesis submitted in conformity with the requirements \ for the degree of Doctor of Philosophy \
+    A thesis submitted in conformity with the requirements \ for the degree of #degree \
     #department \
     University of Toronto
     #v(gap_4_height)
@@ -118,7 +119,7 @@
 }
 //  // }}}
 
-// working on abstract
+// init_abstract() // {{{
 #let init_abstract(//title,
                    //degree,
                    //graduation_year,
@@ -129,8 +130,9 @@
   heading("Abstract")
   abstract
 }
+//  // }}}
 
-// title: 
+// title:  // {{{
 // - The title of the thesis.
 //
 // author:
@@ -145,11 +147,12 @@
 // - "left_imperial": Applies 1.25 in left margin and 0.75 in top, right,
 //   and bottom margin to the main text.
 // - "metric": Applies 20 mm margin to all sides of the main text.
-// - "imperial": Applies 0.75 in margin to all sides of the main text.
+// - "imperial": Applies 0.75 in margin to all sides of the main text. // }}}
 #let uoft(title: none,
           author: "PARAM_AUTHOR",
           abstract: [],
           department: [],
+          degree: [],
           graduation_year: "PARAM_YEAR",
           title_page_top_margin: 5cm,
           title_page_gap_1_height: 4cm,
@@ -182,6 +185,7 @@
     title,
     author,
     department,
+    degree,
     graduation_year,
     title_page_top_margin,
     title_page_gap_1_height,
