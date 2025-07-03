@@ -111,7 +111,7 @@
     #author
     #v(gap_3_height)
     A thesis submitted in conformity with the requirements \ for the degree of #degree \
-    #department \
+    Department of #department \
     University of Toronto
     #v(gap_4_height)
     #sym.copyright Copyright by #author
@@ -124,15 +124,16 @@
                    //degree,
                    //graduation_year,
                    //name,
-                   abstract) = {
+                   ) = {
   set text(top-edge: 0.7em, bottom-edge: -0.3em)
   set par(leading: 1em)
   heading("Abstract")
-  abstract
+  include("content/abstract.typ")
 }
 //  // }}}
 
-// title:  // {{{
+// uoft() // {{{
+// title:
 // - The title of the thesis.
 //
 // author:
@@ -147,13 +148,12 @@
 // - "left_imperial": Applies 1.25 in left margin and 0.75 in top, right,
 //   and bottom margin to the main text.
 // - "metric": Applies 20 mm margin to all sides of the main text.
-// - "imperial": Applies 0.75 in margin to all sides of the main text. // }}}
+// - "imperial": Applies 0.75 in margin to all sides of the main text.
 #let uoft(title: none,
-          author: "PARAM_AUTHOR",
-          abstract: [],
-          department: [],
-          degree: [],
-          graduation_year: "PARAM_YEAR",
+          author: [*missing_param_author*],
+          department: [*missing_param_department*],
+          degree: [*missing_param_degree*],
+          graduation_year: [*missing_param_year*],
           title_page_top_margin: 5cm,
           title_page_gap_1_height: 4cm,
           title_page_gap_2_height: 4cm,
@@ -197,8 +197,12 @@
   )
 
   //---------------------------------------------------------------------------
-  init_abstract(abstract)
+
+  init_abstract()
+
+  pagebreak()
 
   doc
   //set page(margin: 10cm)
 }
+// // }}}
