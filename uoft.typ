@@ -1,7 +1,6 @@
 #import "@preview/wordometer:0.1.4": word-count, total-words, word-count-of, string-word-count
 #show: word-count
 
-
 // parse_page_dims() // {{{
 #let parse_page_dims(page_size_style) = {
   let (page_width, page_height) = if page_size_style == "metric" {
@@ -189,6 +188,7 @@
 
 // init_main() // {{{
 #let init_main() = {
+  set heading(numbering: "1.1.1.a")
   include("content/main.typ")
 }
 //  // }}}
@@ -241,8 +241,8 @@
   show heading: set block(above: 0em, below: 0.5em)
   heading("List of Appendices")
   outline(
-    title: [],
-    target: heading.where(supplement: "appendix")
+    title: [Appendix],
+    target: heading.where(supplement: [Appendix])
   )
 }
 //  // }}}

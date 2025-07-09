@@ -1,7 +1,21 @@
-= Introduction
+#include("introduction.typ")
 
-= Methods
+#pagebreak()
+#include("ch1.typ")
 
-= Results
+#pagebreak()
+#include("ch2.typ")
 
-= Discussion
+#pagebreak()
+#include("ch3.typ")
+
+#pagebreak()
+#include("ch4.typ")
+
+#pagebreak()
+#include("references.typ")
+
+#counter(heading).update(0)
+
+#pagebreak()
+#include("appendix.typ")
