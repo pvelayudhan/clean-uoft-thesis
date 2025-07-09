@@ -1,21 +1,10 @@
-#include("introduction.typ")
+#import "uoft.typ": uoft, word-count, total-words, word-count-of, string-word-count
 
-#pagebreak()
-#include("ch1.typ")
-
-#pagebreak()
-#include("ch2.typ")
-
-#pagebreak()
-#include("ch3.typ")
-
-#pagebreak()
-#include("ch4.typ")
-
-#pagebreak()
-#include("references.typ")
-
-#counter(heading).update(0)
-
-#pagebreak()
-#include("appendix.typ")
+#show: uoft.with(
+  title: "Title of Thesis",
+  author: [Firstname Lastname],
+  department: "Physiology",
+  degree: "Doctor of Philosophy",
+  graduation_year: "2025",
+  font_size: 12pt
+)

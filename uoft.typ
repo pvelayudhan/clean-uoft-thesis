@@ -189,7 +189,7 @@
 // init_main() // {{{
 #let init_main() = {
   set heading(numbering: "1.1.1.a")
-  include("content/main.typ")
+  include("content/body.typ")
 }
 //  // }}}
 

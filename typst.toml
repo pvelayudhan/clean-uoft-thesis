@@ -5,3 +5,8 @@ entrypoint = "thesis.typ"
 authors = ["Prashanth Velayudhan"]
 license = "MIT"
 description = "Unofficial masters and doctoral thesis template for the School of Graduate Studies at the University of Toronto"
+
+[template]
+path = "content"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
