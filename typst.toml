@@ -5,6 +5,7 @@ entrypoint = "uoft.typ"
 authors = ["Prashanth Velayudhan"]
 license = "MIT"
 description = "Unofficial masters and doctoral thesis template for the School of Graduate Studies at the University of Toronto"
+categories = ["thesis"]
 
 [template]
 path = "content"

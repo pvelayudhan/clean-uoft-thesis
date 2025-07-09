@@ -6,7 +6,7 @@
   let (page_width, page_height) = if page_size_style == "metric" {
     (21.5cm, 28cm)
   } else if (page_size_style == "imperial") {
-    (18.5in, 11in)
+    (8.5in, 11in)
   } else {
     panic([Parameter `page_size_style` must be either `metric` or `imperial`])
   }
@@ -19,7 +19,7 @@
   let (margin_t, margin_b, margin_l, margin_r) = if (page_margin_style == "left_metric") {
     (20mm, 20mm, 32mm, 20mm)
   } else if (page_margin_style == "left_imperial") {
-    (0.75in, 0.75in, 10.25in, 0.75in)
+    (0.75in, 0.75in, 1.25in, 0.75in)
   } else if (page_margin_style == "metric") {
     (20mm, 20mm, 20mm, 20mm)
   } else if (page_margin_style == "imperial") {
@@ -292,7 +292,7 @@
           title_page_bottom_margin: 3cm,
           page_size_style: "metric",
           main_margin_style: "left_metric",
-          font_size: 10pt,
+          font_size: 12pt,
           doc) = {
   let (page_width, page_height) = parse_page_dims(
     page_size_style
