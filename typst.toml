@@ -1,7 +1,7 @@
 [package]
 name = "clean-uoft-thesis"
 version = "0.1.0"
-entrypoint = "thesis.typ"
+entrypoint = "uoft.typ"
 authors = ["Prashanth Velayudhan"]
 license = "MIT"
 description = "Unofficial masters and doctoral thesis template for the School of Graduate Studies at the University of Toronto"

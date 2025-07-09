@@ -1,4 +1,4 @@
-#import "uoft.typ": uoft, word-count, total-words, word-count-of, string-word-count
+#import "@preview/clean-uoft-thesis:0.1.0": *
 
 #show: uoft.with(
   title: "Title of Thesis",
