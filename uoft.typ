@@ -107,7 +107,7 @@
   ) 
 
   align(center)[
-    #title
+    #text(size: 1.4em)[#title]
     #v(gap_1_height)
     by
     #v(gap_2_height)
@@ -117,7 +117,7 @@
     Department of #department \
     University of Toronto
     #v(gap_4_height)
-    #sym.copyright Copyright by #author
+    #sym.copyright Copyright by #author #graduation_year
   ]
 }
 //  // }}}
@@ -147,7 +147,7 @@
   }
 
   set align(center)
-  title
+  text(1.4em)[#title]
 
   linebreak()
   linebreak()
@@ -307,6 +307,11 @@
   )
   let font_size = parse_font(font_size)
   set text(size: font_size)
+
+  show heading: it => block(width: 100%)[
+    #set text(weight: "regular")
+    #(it.body)
+  ]
 
   check_valid_degree(degree)
 
