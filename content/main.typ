@@ -6,29 +6,29 @@
   department: "Physiology",
   degree: "Doctor of Philosophy",
   graduation_year: "2025",
-  abstract: include("abstract.typ"),
-  acknowledgements: include("acknowledgements.typ"),
+  abstract: include "abstract.typ",
+  acknowledgements: include "acknowledgements.typ",
   font_size: 12pt
 )
 
-#include("introduction.typ")
+#include "introduction.typ"
 
 #pagebreak()
-#include("ch1.typ")
+#include "ch1.typ"
 
 #pagebreak()
-#include("ch2.typ")
+#include "ch2.typ"
 
 #pagebreak()
-#include("ch3.typ")
+#include "ch3.typ"
 
 #pagebreak()
-#include("ch4.typ")
+#include "ch4.typ"
 
 #pagebreak()
-#include("references.typ")
+#include "references.typ"
 
 #counter(heading).update(0)
 
 #pagebreak()
-#include("appendix.typ")
+#include "appendix.typ"
