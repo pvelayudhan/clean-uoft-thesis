@@ -5,10 +5,10 @@
   author: "Firstname Lastname",
   department: "Physiology",
   degree: "Doctor of Philosophy",
-  graduation_year: "2025",
+  graduation-year: "2025",
   abstract: include "abstract.typ",
   acknowledgements: include "acknowledgements.typ",
-  font_size: 12pt
+  font-size: 12pt
 )
 
 #include "introduction.typ"
