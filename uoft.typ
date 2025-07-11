@@ -186,13 +186,6 @@
 }
 //  // }}}
 
-// init_body() // {{{
-#let init_body(body) = {
-  set heading(numbering: "1.1.1.a")
-  body
-}
-//  // }}}
-
 // init_table_of_contents() // {{{
 #let init_table_of_contents() = {
   show heading: set block(above: 0em, below: 0.5em)
@@ -281,7 +274,6 @@
           graduation_year: [*missing_param_year*],
           abstract: [],
           acknowledgements: [],
-          body: [],
           show_acknowledgements: true,
           show_list_of_tables: true,
           show_list_of_plates: false,
@@ -382,7 +374,7 @@
   set page(numbering: "1")
   counter(page).update(1)
 
-  init_body(body)
+  set heading(numbering: "1.1.1.a")
 
   doc
   //set page(margin: 10cm)
