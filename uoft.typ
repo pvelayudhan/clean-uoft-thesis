@@ -251,22 +251,6 @@
 //  // }}}
 
 // uoft() // {{{
-// title:
-// - The title of the thesis.
-//
-// author:
-// - The author of the thesis.
-//
-// department:
-// - The department for which the thesis is submitted.
-//
-// main-margin-style: 
-// - "left-metric": (default) Applies 32 mm left margin and 20 mm top,
-//   right, and bottom margin to the main text.
-// - "left-imperial": Applies 1.25 in left margin and 0.75 in top, right,
-//   and bottom margin to the main text.
-// - "metric": Applies 20 mm margin to all sides of the main text.
-// - "imperial": Applies 0.75 in margin to all sides of the main text.
 #let uoft(title: none,
           author: [*missing-param-author*],
           department: [*missing-param-department*],
@@ -377,6 +361,5 @@
   set heading(numbering: "1.1.1.a")
 
   doc
-  //set page(margin: 10cm)
 }
 // // }}}
